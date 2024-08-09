@@ -678,10 +678,10 @@ def main():
         config = InternVLChatConfig.from_pretrained(model_args.model_name_or_path)
         config.vision_config.drop_path_rate = model_args.drop_path_rate
         if config.llm_config.model_type == 'internlm2':
-            config.llm_config.attn_implementation = 'flash_attention_2'  # for InternLM
+            # config.llm_config.attn_implementation = 'flash_attention_2'  # for InternLM
             logger.info('Using flash_attention_2 for InternLM')
         else:
-            config.llm_config._attn_implementation = 'flash_attention_2'  # for LLaMA
+            # config.llm_config._attn_implementation = 'flash_attention_2'  # for LLaMA
             logger.info('Using flash_attention_2 for LLaMA')
         config.template = data_args.conv_style
         config.select_layer = model_args.vision_select_layer
