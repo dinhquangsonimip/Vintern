@@ -702,11 +702,11 @@ def main():
         llm_config = AutoConfig.from_pretrained(model_args.llm_path, trust_remote_code=True)
         if llm_config.model_type == 'internlm2':
             model_type = InternLM2ForCausalLM
-            llm_config.attn_implementation = 'flash_attention_2'  # for InternLM
+            # llm_config.attn_implementation = 'flash_attention_2'  # for InternLM
             logger.info('Using flash_attention_2 for InternLM')
         else:
             model_type = AutoModelForCausalLM
-            llm_config._attn_implementation = 'flash_attention_2'  # for LLaMA
+            # llm_config._attn_implementation = 'flash_attention_2'  # for LLaMA
             logger.info('Using flash_attention_2 for LLaMA')
         llm = model_type.from_pretrained(
             model_args.llm_path, torch_dtype=torch.bfloat16,
