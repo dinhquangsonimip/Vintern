@@ -72,6 +72,9 @@ class InternVLChatConfig(PretrainedConfig):
         self.min_dynamic_patch = min_dynamic_patch
         self.max_dynamic_patch = max_dynamic_patch
 
+        if 'system_message' in kwargs:
+            self.system_message = kwargs['system_message']
+
         logger.info(f'vision_select_layer: {self.select_layer}')
         logger.info(f'ps_version: {self.ps_version}')
         logger.info(f'min_dynamic_patch: {self.min_dynamic_patch}')
@@ -100,5 +103,7 @@ class InternVLChatConfig(PretrainedConfig):
         output['ps_version'] = self.ps_version
         output['min_dynamic_patch'] = self.min_dynamic_patch
         output['max_dynamic_patch'] = self.max_dynamic_patch
+        if hasattr(self, 'system_message'):
+            output['system_message'] = self.system_message
 
         return output

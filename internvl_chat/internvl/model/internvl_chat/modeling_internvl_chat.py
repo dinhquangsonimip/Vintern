@@ -92,6 +92,7 @@ class InternVLChatModel(PreTrainedModel):
             self.system_message = config.system_message
         else:
             self.system_message = self.conv_template.system_message
+            config.system_message = self.system_message
         self.num_samples = 0
 
         if config.use_backbone_lora:
